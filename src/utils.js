@@ -16,11 +16,11 @@ function containsUniqueIntegers(arr) {
   return true;
 }
 
-function parseToIntArray(arr){
+function parseToIntArray(arr) {
   const parsedArr = [...arr];
-  for(let i = 0; i < arr.length; i++){
+  for (let i = 0; i < arr.length; i++) {
     const value = Number(arr[i]);
-    if(!Number.isInteger(value)) return null;
+    if (!Number.isInteger(value)) return [];
     else parsedArr[i] = value;
   }
   return parsedArr;
@@ -29,23 +29,23 @@ function parseToIntArray(arr){
 function findPair(arr, desiredSum) {
 
   const intArray = parseToIntArray(arr);
-  
-  if(!containsOnlyPositive(intArray)) return null;
-  if(!containsUniqueIntegers(intArray)) return null;
-  
+
+  if (!containsOnlyPositive(intArray)) return null;
+  if (!containsUniqueIntegers(intArray)) return null;
+
   let a = Infinity, b;
-  for(let i = 0; i < intArray.length; i++){
+  for (let i = 0; i < intArray.length; i++) {
     const first = intArray[i];
     const needed = desiredSum - first;
-    for(let j = 0; j < intArray.length; j++){
+    for (let j = 0; j < intArray.length; j++) {
       const second = intArray[j];
-      if(second === needed && first < a){
+      if (second === needed && first < a) {
         a = first;
         b = second;
       }
     }
   }
-  if(a === Infinity) return null;
+  if (a === Infinity) return null;
   return [a, b];
 }
 
